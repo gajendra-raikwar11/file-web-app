@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit File</title>
+</head>
+<body>
+    <h1>Edit File Content</h1>
+    <form action="/update/:filename" method="POST">
+        <textarea name="content" rows="20" cols="50">
+            <%= filedata %>
+        </textarea>
+        <button type="submit">Save Changes</button>
+    </form>
+</body>
+</html>

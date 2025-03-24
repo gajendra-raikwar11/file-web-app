@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+
+</head>
+<body>
+  <div class="main  w-full min-h-screen bg-zinc-900 text-white">
+    <!-- form -->
+    <div class="form px-10 py-10">
+        <form action="/create" method="post">
+            <input required class="block w-full px-5  py-2 rounded-lg bg-zinc-800 outline-none" type="text" name="title" placeholder="File name">
+            <textarea  required class="block mt-2 w-full px-5 py-2  resize-none rounded-lg bg-zinc-800 outline-none" name="data" placeholder="Write something about text"></textarea>
+            <input type="submit" class="block bg-blue-500 px-10 py-1 mt-2 rounded-md tex-md">
+        </form>
+    </div>
+    <!-- tasks -->
+    <div class="tasks px-10 py-10 flex gap-4 flex-wrap">
+        <% if(files.length > 0){ %>
+            <% files.forEach(function(val){ %>
+                <div class="task  min-w-56  p-3 bg-zinc-800 rounded-lg ">
+                    <h3 class="text-3xl tracking-tighter mb-3"><%= val.tittle %></h3>
+                    <p class="opacity-40 mt-2 text-zinc-100">
+                  <!-- check if (text.length < 15) so mark .... else text-->      
+                     <%if(val.data.length < 15){%>
+                        <%= val.data %>
+                    <%}else{%>
+                        <%= val.data.substring(0, 16) + "..." %>
+                    <%}%> 
+                    </p>
+
+           <!-- read more data route --> <a href="/read/<%= val.tittle %>" class="text-sm cursor-pointer text-blue-500  mt-5 ">Read more!</a>
+                  <!-- delete task -->   <a href="/remove/<%= val.tittle %>" class="text-sm cursor-pointer text-red-500 ml-6">Delete<i class="ri-delete-bin-7-line ml-1"></i></i></a>
+                  <a href="/edit/<%= val.tittle %>" class="text-sm cursor-pointer text-green-400 ml-6">edit<i class="ri-delete-bin-7-line ml-1"></i></i></a>
+                </div>
+            <%  }) %>
+            <% }else{ %>
+                <h1 class="text-zinc-500">no files yet..</h1>
+        <% } %> 
+    </div>
+  </div>
+</body>
+</html>
